@@ -8,7 +8,6 @@ class Article extends Model
 {
     //
     protected $fillable = [
-        'name',
         'user_id',
         'category_id',
         'title',
@@ -21,7 +20,7 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function transaction()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
