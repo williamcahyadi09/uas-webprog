@@ -14,6 +14,9 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    // function untuk menampilkan seluruh artikel pada web
+    // flag menandakan apakah akan dishow berdasarkan category atau tidak
     public function index_home()
     {
         //
@@ -23,6 +26,7 @@ class ArticleController extends Controller
         return view('home', ['articles' => $articles, 'flag' => $flag]);
     }
 
+    // function untuk menampilkan seluruh artikel pada web (admin)
     public function index_admin()
     {
         //
@@ -31,6 +35,7 @@ class ArticleController extends Controller
         return view('all_post', ['articles' => $articles]);
     }
 
+    // function menampilkan artikel berdasarkan category
     public function show_by_category($category_type)
     {
         //
@@ -41,11 +46,13 @@ class ArticleController extends Controller
         return view('home', ['articles' => $articles, 'flag' => true,'category' => $category_name]);
     }
 
+    // function menampilkan detail artikel
     public function getArticleDetail(Article $article)
     {   
         return view('article_detail', ['article' => $article]);
     }
 
+    // function untuk mendapatkan user dari sebuah artikel
     public function getArticleByUser()
     {
         $user = Auth::user();
@@ -58,6 +65,8 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // function menampilkan view form create article
     public function create()
     {
         //
@@ -70,6 +79,8 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     // function untuk menambahkan data yang telah diisi di form ke table articles
     public function store(Request $request)
     {
         //
@@ -100,7 +111,7 @@ class ArticleController extends Controller
         return redirect('/blog')->with('status', 'Article successfully posted');
     }
 
-
+    // function delete article
     public function destroy(Article $article)
     {
         $article = $article;
@@ -111,6 +122,7 @@ class ArticleController extends Controller
         return redirect('/blog')->with('status', 'Post deleted !');
     }
 
+    // function delete article admin
     public function destroyed_by_admin(Article $article)
     {
         $article = $article;
